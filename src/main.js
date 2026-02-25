@@ -9,6 +9,9 @@ import dashboardPage from './pages/dashboard.js';
 import draftPage from './pages/draft.js';
 import gameweekPage from './pages/gameweek.js';
 import standingsPage from './pages/standings.js';
+import h2hPage from './pages/h2h.js';
+import assistantPage from './pages/assistant.js';
+import socialPage from './pages/social.js';
 
 // ---- Toast System ----
 let toastContainer = null;
@@ -47,6 +50,9 @@ function init() {
     route('/draft', draftPage);
     route('/gameweek', gameweekPage);
     route('/standings', standingsPage);
+    route('/h2h', h2hPage);
+    route('/assistant', assistantPage);
+    route('/social', socialPage);
 
     // Start router with navbar active link callback
     startRouter((path) => {

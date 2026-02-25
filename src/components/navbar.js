@@ -11,6 +11,9 @@ const NAV_LINKS = [
   { label: 'Draft', path: '/draft', icon: '◈' },
   { label: 'Gameweek', path: '/gameweek', icon: '◉' },
   { label: 'Standings', path: '/standings', icon: '◆' },
+  { label: 'Arena', path: '/h2h', icon: '⚔' },
+  { label: 'AI', path: '/assistant', icon: '🤖' },
+  { label: 'Social', path: '/social', icon: '🏆' },
 ];
 
 export function renderNavbar() {
