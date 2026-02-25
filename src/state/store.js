@@ -160,19 +160,32 @@ export function clearCaptain() {
 
 /**
  * Calculate fantasy points for a player based on match events
+ * Uses custom scoring rules from settings if the user has changed them
  * @param {string} position - GK, DEF, MID, FWD
  * @param {{ goals: number, assists: number, cleanSheet: boolean, yellowCard: boolean, redCard: boolean }} events
  * @param {boolean} isCaptain
  * @returns {number}
  */
 export function calculatePoints(position, events, isCaptain = false) {
+    // Try custom rules first, fall back to hardcoded SCORING
+    let rules;
+    try {
+        const raw = localStorage.getItem('prem_scoring_rules');
+        rules = raw ? JSON.parse(raw) : SCORING;
+    } catch {
+        rules = SCORING;
+    }
+
     let pts = 0;
 
-    pts += (events.goals || 0) * (SCORING.goal[position] || 0);
-    pts += (events.assists || 0) * (SCORING.assist[position] || 0);
-    if (events.cleanSheet) pts += SCORING.cleanSheet[position] || 0;
-    if (events.yellowCard) pts += SCORING.yellowCard[position] || 0;
-    if (events.redCard) pts += SCORING.redCard[position] || 0;
+    // Appearance points
+    pts += (rules.appearance?.[position] || 0);
+
+    pts += (events.goals || 0) * (rules.goal?.[position] || SCORING.goal[position] || 0);
+    pts += (events.assists || 0) * (rules.assist?.[position] || SCORING.assist[position] || 0);
+    if (events.cleanSheet) pts += (rules.cleanSheet?.[position] || SCORING.cleanSheet[position] || 0);
+    if (events.yellowCard) pts += (rules.yellowCard?.[position] || SCORING.yellowCard[position] || 0);
+    if (events.redCard) pts += (rules.redCard?.[position] || SCORING.redCard[position] || 0);
 
     if (isCaptain) pts *= 2;
 

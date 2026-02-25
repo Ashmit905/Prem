@@ -14,6 +14,9 @@ const NAV_LINKS = [
   { label: 'Arena', path: '/h2h', icon: '⚔' },
   { label: 'AI', path: '/assistant', icon: '🤖' },
   { label: 'Social', path: '/social', icon: '🏆' },
+  { label: 'News', path: '/news', icon: '📰' },
+  { label: 'Leagues', path: '/leagues', icon: '🏟' },
+  { label: 'Settings', path: '/settings', icon: '⚙' },
 ];
 
 export function renderNavbar() {

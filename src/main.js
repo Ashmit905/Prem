@@ -12,6 +12,10 @@ import standingsPage from './pages/standings.js';
 import h2hPage from './pages/h2h.js';
 import assistantPage from './pages/assistant.js';
 import socialPage from './pages/social.js';
+import settingsPage from './pages/settings.js';
+import newsPage from './pages/news.js';
+import leaguesPage from './pages/leagues.js';
+import { renderAuthBar } from './components/authbar.js';
 
 // ---- Toast System ----
 let toastContainer = null;
@@ -45,6 +49,7 @@ export function showToast(message, type = 'info') {
 // ---- Init ----
 function init() {
     renderNavbar();
+    renderAuthBar();
 
     route('/', dashboardPage);
     route('/draft', draftPage);
@@ -53,6 +58,9 @@ function init() {
     route('/h2h', h2hPage);
     route('/assistant', assistantPage);
     route('/social', socialPage);
+    route('/settings', settingsPage);
+    route('/news', newsPage);
+    route('/leagues', leaguesPage);
 
     // Start router with navbar active link callback
     startRouter((path) => {
