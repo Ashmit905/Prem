@@ -196,7 +196,7 @@ function renderMatches(matches) {
     return `
       <div class="fixture-card">
         <div class="fixture-card__header">
-          <span class="fixture-card__competition">Premier League</span>
+          <span class="fixture-card__competition">Football</span>
           <span class="fixture-card__status ${isLive ? 'fixture-card__status--live' : ''}">${statusStr}</span>
         </div>
         <div class="fixture-card__body">

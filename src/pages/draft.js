@@ -94,7 +94,7 @@ export default async function draftPage(container) {
       <div class="empty-state">
         <div class="empty-state__icon">📡</div>
         <div class="empty-state__title">API key required</div>
-        <p class="empty-state__text">Add your football-data.org key to <code style="background:var(--bg-secondary);padding:2px 5px;border-radius:3px;">.env</code> to load Premier League players.</p>
+        <p class="empty-state__text">Add your football-data.org key to <code style="background:var(--bg-secondary);padding:2px 5px;border-radius:3px;">.env</code> to load players.</p>
       </div>
     `;
   }

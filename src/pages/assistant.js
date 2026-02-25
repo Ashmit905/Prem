@@ -35,7 +35,7 @@ export default async function assistantPage(container) {
     animate('.page__header', { opacity: [0, 1], y: [16, 0] }, { duration: 0.4 });
 
     // Opening message
-    await addBotMessage('Hey boss! I\'m your strategy assistant. I analyze Premier League data to help you make smarter decisions. What do you want to know?');
+    await addBotMessage('Hey boss! I\'m your strategy assistant. I analyze football data to help you make smarter decisions. What do you want to know?');
 
     animate('#chat-actions', { opacity: [0, 1], y: [10, 0] }, { duration: 0.35 });
 

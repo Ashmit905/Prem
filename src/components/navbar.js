@@ -28,8 +28,8 @@ export function renderNavbar() {
       <a class="navbar__brand" href="#/" onclick="event.preventDefault(); window.location.hash='/'">
         <div class="navbar__badge">⚽</div>
         <div class="navbar__wordmark">
-          <span class="navbar__title">PREM</span>
-          <span class="navbar__sub">Fantasy PL</span>
+          <span class="navbar__title">KICKOFF</span>
+          <span class="navbar__sub">Fantasy Football</span>
         </div>
       </a>
 

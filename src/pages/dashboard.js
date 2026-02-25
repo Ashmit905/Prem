@@ -29,7 +29,7 @@ export default async function dashboardPage(container) {
     ` : ''}
 
     <div class="page__header" data-motion>
-      <div class="page__eyebrow">Premier League Fantasy</div>
+      <div class="page__eyebrow">Fantasy Football</div>
       <h1 class="page__title">Your Season<br>At A Glance</h1>
     </div>
 
@@ -69,7 +69,7 @@ export default async function dashboardPage(container) {
         <div class="dash-nav-card__icon">📋</div>
         <div class="dash-nav-card__title">Draft Room</div>
         <div class="dash-nav-card__desc">
-          Browse 500+ Premier League players. Filter by position, search by name, and build your 15-man squad.
+          Browse 500+ players. Filter by position, search by name, and build your 15-man squad.
         </div>
         <div class="dash-nav-card__arrow">Enter Draft Room →</div>
       </div>
@@ -89,7 +89,7 @@ export default async function dashboardPage(container) {
         <div class="dash-nav-card__icon">🏆</div>
         <div class="dash-nav-card__title">Standings</div>
         <div class="dash-nav-card__desc">
-          Live Premier League table with all 20 clubs. Champions League spots, relegation battles — all of it.
+          Live league table with all 20 clubs. Champions League spots, relegation battles — all of it.
         </div>
         <div class="dash-nav-card__arrow">See Table →</div>
       </div>
@@ -170,7 +170,7 @@ export default async function dashboardPage(container) {
         <div class="empty-state">
           <div class="empty-state__icon">📡</div>
           <div class="empty-state__title">Connect to see live fixtures</div>
-          <p class="empty-state__text">Add your API key to load real Premier League data.</p>
+          <p class="empty-state__text">Add your API key to load real league data.</p>
         </div>
       `;
     }
@@ -187,7 +187,7 @@ function renderFixtureCard(m) {
   return `
     <div class="fixture-card">
       <div class="fixture-card__header">
-        <span class="fixture-card__competition">Premier League</span>
+        <span class="fixture-card__competition">Football</span>
         <span class="fixture-card__status ${isLive ? 'fixture-card__status--live' : ''}">
           ${statusStr}
         </span>
