@@ -5,7 +5,7 @@
  * API docs: https://www.football-data.org/documentation/api
  */
 
-const BASE_URL = 'https://api.football-data.org/v4';
+const BASE_URL = '/api/v4';
 const API_KEY = import.meta.env.VITE_API_KEY || '';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
