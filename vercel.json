@@ -1,0 +1,20 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:path*",
+            "destination": "https://api.football-data.org/:path*"
+        },
+        {
+            "source": "/rss/bbc",
+            "destination": "https://feeds.bbci.co.uk/sport/football/rss.xml"
+        },
+        {
+            "source": "/rss/espn",
+            "destination": "https://www.espn.com/espn/rss/soccer/news"
+        },
+        {
+            "source": "/rss/sky",
+            "destination": "https://www.skysports.com/rss/12040"
+        }
+    ]
+}
