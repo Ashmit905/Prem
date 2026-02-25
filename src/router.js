@@ -5,26 +5,15 @@
 const routes = {};
 let currentCleanup = null;
 
-/**
- * Register a route
- * @param {string} path - Hash path (e.g. '/', '/draft')
- * @param {Function} handler - Async function(container) that renders the page, optionally returns a cleanup function
- */
 export function route(path, handler) {
     routes[path] = handler;
 }
 
-/**
- * Navigate to a hash path
- */
 export function navigate(path) {
     window.location.hash = path;
 }
 
-/**
- * Start the router — listens for hashchange
- */
-export function startRouter() {
+export function startRouter(onRouteChange) {
     async function handleRoute() {
         const hash = window.location.hash.slice(1) || '/';
         const path = hash.split('?')[0];
@@ -45,11 +34,8 @@ export function startRouter() {
             currentCleanup = await handler(container);
         }
 
-        // Update active nav link
-        document.querySelectorAll('.navbar__link').forEach((link) => {
-            const linkPath = link.getAttribute('href')?.replace('#', '') || '/';
-            link.classList.toggle('navbar__link--active', linkPath === path);
-        });
+        // Notify caller (navbar) of route change
+        if (onRouteChange) onRouteChange(path);
     }
 
     window.addEventListener('hashchange', handleRoute);
