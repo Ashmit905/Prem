@@ -3,7 +3,7 @@
  * Scoreboard fixtures + squad point breakdown
  */
 
-import { fetchCompetition, fetchMatches, isApiKeySet } from '../api/football.js';
+import { fetchCompetition, fetchMatches, isApiKeySet, detectCurrentMatchday } from '../api/football.js';
 import { getSquad, getCaptain, setCaptain, calculatePoints, saveGameweekScores, getGameweekScores, getTotalPoints } from '../state/store.js';
 import { renderSquadPanel } from '../components/squadPanel.js';
 import { showToast } from '../main.js';
@@ -16,7 +16,7 @@ export default async function gameweekPage(container) {
   if (isApiKeySet()) {
     try {
       const comp = await fetchCompetition();
-      currentMatchday = comp.currentSeason?.currentMatchday || 1;
+      currentMatchday = await detectCurrentMatchday();
       maxMatchday = 38;
     } catch (err) {
       console.error('Failed to fetch competition:', err);

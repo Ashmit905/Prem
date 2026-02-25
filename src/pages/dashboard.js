@@ -3,7 +3,7 @@
  * Hero stat blocks + nav cards + fixture strips
  */
 
-import { fetchCompetition, fetchMatches, isApiKeySet } from '../api/football.js';
+import { fetchCompetition, fetchMatches, isApiKeySet, detectCurrentMatchday } from '../api/football.js';
 import { getSquad, getTotalPoints, getCaptain } from '../state/store.js';
 import { animate, stagger } from 'motion';
 
@@ -116,7 +116,7 @@ export default async function dashboardPage(container) {
   if (isApiKeySet()) {
     try {
       const comp = await fetchCompetition();
-      const currentMatchday = comp.currentSeason?.currentMatchday || 1;
+      const currentMatchday = await detectCurrentMatchday();
 
       const gwStat = document.getElementById('gw-stat');
       if (gwStat) {

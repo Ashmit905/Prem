@@ -50,6 +50,58 @@ export async function fetchCompetition() {
 }
 
 /**
+ * Detect the REAL current matchday by checking match dates
+ * Falls back to API's currentMatchday if detection fails
+ */
+export async function detectCurrentMatchday() {
+    try {
+        const comp = await fetchCompetition();
+        const apiMatchday = comp.currentSeason?.currentMatchday || 1;
+
+        // Fetch matches around today to find the right matchday
+        const today = new Date();
+        const weekAgo = new Date(today);
+        weekAgo.setDate(today.getDate() - 7);
+        const weekAhead = new Date(today);
+        weekAhead.setDate(today.getDate() + 7);
+
+        const dateFrom = weekAgo.toISOString().split('T')[0];
+        const dateTo = weekAhead.toISOString().split('T')[0];
+
+        const data = await apiFetch(`/competitions/PL/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`);
+        const matches = data.matches || [];
+
+        if (matches.length === 0) {
+            return apiMatchday;
+        }
+
+        // Find the matchday with matches closest to today
+        const matchdays = [...new Set(matches.map(m => m.matchday))].sort((a, b) => a - b);
+
+        // Prefer the matchday that has the closest upcoming or most recent match
+        let bestMd = matchdays[0];
+        let bestDiff = Infinity;
+
+        for (const md of matchdays) {
+            const mdMatches = matches.filter(m => m.matchday === md);
+            for (const m of mdMatches) {
+                const diff = Math.abs(new Date(m.utcDate).getTime() - today.getTime());
+                if (diff < bestDiff) {
+                    bestDiff = diff;
+                    bestMd = md;
+                }
+            }
+        }
+
+        return bestMd;
+    } catch {
+        // Fallback to API value
+        const comp = await fetchCompetition();
+        return comp.currentSeason?.currentMatchday || 1;
+    }
+}
+
+/**
  * Get all PL teams with full squads
  * Returns { teams: [{ id, name, crest, squad: [...] }] }
  */
